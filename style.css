@@ -1,0 +1,427 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+*{
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    font-family: 'poppins' sans-serif;
+    overflow-x: hidden;
+}
+.navbar{
+    background-color:#1f1f1f;
+    width: 100%;
+    box-shadow: 0 0 1px 0 rgba(0,0,0,0.2);
+}
+.navbar ul{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  margin: 0.5rem auto;
+}
+.navbar li{
+  list-style-type: none;
+  padding: 1rem;
+}
+.navbar a{
+    display: block;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    text-decoration: none;
+    z-index: 1;
+}
+.navbar li a:hover {
+  color: #bba3a3;
+}
+@media only screen and (max-width:767px){
+  .navbar{
+      text-align: left;
+  }
+  .navbar ul{
+    float: right;
+    margin-right: 15px;
+  }
+  .navbar .col-md-4 {
+    max-width: 90%;
+    position: relative;
+    z-index: 2;
+  }
+  .navbar .col-md-8 {
+    margin-top: -50px;       
+  }
+  #mainnav-mobi {
+        top: 70px;
+  }
+}
+.container{
+    margin-top: 20px;
+    width: 83rem;
+    display: flex;
+    flex-wrap: wrap; 
+    background-color: #1f1f1f;
+    border: 1px solid white;
+    padding: 0.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 1px rgba(0,0,0,0.2);
+}
+.profile{
+    max-width: 100%;
+    display: flex;
+    height: fit-content;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem auto;
+}
+.Image-container img{
+    height: 300px;
+    width: 300px;
+    max-width: 95%;
+    border-radius: 12px;
+}
+.info{
+    text-align: center;
+    color: white;
+}
+.info h2{
+    margin: 0.5rem;
+}
+.social-panel-container{
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    justify-content: space-around;
+}
+.social-panel-container a{
+    padding-right: 20px;
+}
+.about{
+    color: white;
+    width: 50%;
+    margin: 2rem auto;
+    text-align: center;
+    text-shadow: #3a3838;
+}
+.para{
+    padding-top: 3rem;
+    font-weight: 350;
+    font-size: large;
+    font-display:inherit;
+}
+.para button{
+    padding: 0.5rem 1rem;
+    border: 1px solid white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.26);
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  [class ="about"] {
+    width: 100%;
+  }
+}
+.container-2{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #3a3838;
+    width: 83rem;
+    max-width: 90%;
+    margin: 2rem auto;
+    border: 1px solid white;
+    border-radius: 12px;
+    padding: 2rem;
+}
+.container-2 h2{
+  text-align: center;
+  color: white;
+}
+.academic-project{
+  max-width: 100%;
+  height: 500px;
+  margin: 20px auto;
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px;
+  
+}
+.carousal-container1{
+  max-width: 100%;
+  height: 400px;
+  background: #d6b685;
+  margin: 10px auto;
+  display: flex;
+  justify-content: left;
+  overflow-x: auto;
+  border-radius: 12px;
+}
+.carousal-container1 a{
+  position: absolute;
+  text-decoration: none;
+  top: 40%;
+  font-size: 40px;
+  font-weight: bold;
+  color:white;
+  cursor: pointer;
+  left: 0%;
+  z-index: 1;
+}
+.carousal-container1 a:nth-of-type(2){
+  left: 95%;
+  text-align: right;
+}
+.carousal-container1::-webkit-scrollbar{
+  visibility: hidden;
+}
+.mySlides1{
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  max-height: 400px;
+  max-width: 400px;
+  position: relative;
+  left: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: medium;
+  margin: 10px 20px;
+  color: white;
+  background: purple;
+  transition: 0.5s;
+  border-radius: 10px;
+}
+.mySlides1 img{
+  max-height: 300px;
+  max-width: 300px;
+  border-radius: 10px;
+}
+.mySlides1 button{
+  cursor: pointer;
+  padding: 0.2rem 1rem;
+  margin: 5px;
+  background: #f0eaea;
+  font-weight: 500;
+  border-radius: 6px;
+  box-shadow: 0px 0px 6px rgba(0,0,0,0.26);
+}
+.mySlides1 button:hover{
+  background-color: cyan;
+}
+.personal-project{
+  max-width: 100%;
+  height: 500px;
+  margin: 20px auto;
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px;
+}
+.carousal-container2{
+  max-width: 100%;
+  height: 400px;
+  background: #d6b685;
+  margin: 10px auto;
+  display: flex;
+  justify-content: left;
+  overflow-x: auto;
+  border-radius: 12px;
+}
+.carousal-container2 a{
+  position: absolute;
+  font-weight: bold;
+  font-size: 40px;
+  top: 40%;
+  left: 0;
+  cursor: pointer;
+  color: white;
+}
+.carousal-container2 a:nth-of-type(2){
+  left: 95%;
+  text-align: right;
+}
+.carousal-container2::-webkit-scrollbar{
+  visibility: hidden;
+}
+.mySlides2{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 300px;
+  max-height: 400px;
+  max-width: 400px;
+  text-align: center;
+  font-weight: bold;
+  font-size: medium;
+  margin: 10px 20px;
+  color: white;
+  background: purple;
+  transition: 0.5s;
+  border-radius: 10px;
+}
+.mySlides2 img{
+  display: block;
+  max-height: 300px;
+  max-width: 300px;
+  border-radius: 10px;
+}
+.mySlides2 img:hover{
+  opacity: 60%;
+  transition: 0.5sec ease;
+}
+.mySlides1 img:hover{
+  opacity: 60%;
+  transition: 0.5sec ease;
+}
+.mySlides2 button{
+  cursor: pointer;
+  padding: 0.2rem 1rem;
+  margin: 5px;
+  background: #f0eaea;
+  font-weight: 500;
+  border-radius: 6px;
+  box-shadow: 0px 0px 6px rgba(0,0,0,0.26);
+}
+.mySlides2 button:hover,
+.mySlides2 button:active{
+  background-color: rgb(74, 175, 133);
+  box-shadow: 0px 0px 16px rgb(145, 94, 142);
+}
+.container1{
+  display: flex;
+  flex-direction: column;
+  background-color: #3a3838;
+  width: 83rem;
+  max-width: 90%;
+  margin: 1rem auto;
+  border: 1px solid white;
+  border-radius: 12px;
+}
+.container1 h2{
+  padding: 2rem;
+  color: white;
+  color: aqua;
+}
+.ed1{
+  flex-wrap: wrap;
+  margin: 0rem auto;
+  max-width: 100%;
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+.in{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  color: white;
+  font-weight: 500;
+  padding: 0 4rem 1rem;
+}
+.in div{
+  padding: 0.5rem;
+}
+.in label{
+  color: aqua;
+  font-size: large;
+}
+.in i{
+  size: 10px;
+}
+.experience{
+  display: flex;
+  max-width: 90%;
+  flex-wrap: wrap;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+.experience label{
+  position: relative;
+  left: 15%;
+  font-weight: bold;
+}
+.project{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 100%;
+  float: left;
+  position: relative;
+  left: 5%;
+  padding: 1rem;
+}
+.exp1{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 100%;
+  float: left;
+  position: relative;
+  left: 5%;
+  padding: 1rem;
+}
+.exp1 p1{
+  
+  float: left;
+  position: relative;
+  left: 10%;
+  
+}
+.exp1 div p{
+  word-wrap: break-word;
+  display: inline;
+  padding: 0.5rem;
+}
+footer{
+  background:black;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 1rem;
+  width: 100%;
+}
+.footer-items{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  justify-content: center;
+  margin: 1rem auto;
+  justify-content: space-around;
+  color: white;
+}
+
+.skills{
+  display: flex;
+  flex-direction: column;
+  text-align:center;
+}
+
+.skills ul{
+  text-decoration: none;
+  list-style: none;
+  font-weight: 500;
+  text-align: center;
+}
+.tags{
+  position: absolute;
+  top: 70%;
+  left: 2%;
+  display: flex;
+  color:black;
+  justify-content: center;
+}
+.tags span{
+  position: relative;
+  padding: 0.2rem;
+  margin: 0.2rem;
+  background:rgba(255, 251, 1, 0.856);
+  opacity: 2;
+  border: 1px solid white;
+  border-radius: 10%;
+}
+.tags span:hover,
+.tags span:active{
+  background-color: rgb(2, 80, 248);
+  transform: 0.2sec;
+}
