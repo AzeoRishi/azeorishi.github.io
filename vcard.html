@@ -204,8 +204,8 @@
 
         <div class="qr-section">
             <div class="qr-wrapper">
-                <!-- Using absolute path and anonymous CORS to prevent security blocks -->
-                <img id="qr-code-img" src="https://azeorishi.github.io/images/qrcode-card.png" alt="QR Code" crossorigin="anonymous">
+                <!-- Standard relative path without strict CORS restrictions -->
+                <img id="qr-code-img" src="images/qrcode-card.png" alt="QR Code">
             </div>
             <p class="qr-text">Scan to view digital card</p>
         </div>
@@ -224,23 +224,25 @@
     </div>
 
     <script>
-        // Force conversion of the image to Base64 data immediately upon loading
-        document.getElementById('qr-code-img').onload = function() {
+        // Highly reliable method: Convert image to pure data so the PDF generator CANNOT miss it.
+        document.addEventListener("DOMContentLoaded", async () => {
+            const qrImg = document.getElementById("qr-code-img");
             try {
-                const canvas = document.createElement('canvas');
-                canvas.width = this.naturalWidth || this.width;
-                canvas.height = this.naturalHeight || this.height;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(this, 0, 0);
-                // Replace the image source with pure data so it can't be blocked
-                const dataURL = canvas.toDataURL('image/png');
-                if (this.src !== dataURL) {
-                    this.src = dataURL;
-                }
-            } catch (e) {
-                console.error("Canvas conversion error: ", e);
+                // Fetch the image file in the background
+                const response = await fetch('images/qrcode-card.png');
+                const blob = await response.blob();
+                
+                // Read it into Base64 format
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    // Replace the standard URL with the pure data payload
+                    qrImg.src = reader.result;
+                };
+                reader.readAsDataURL(blob);
+            } catch (error) {
+                console.error("Image optimization failed. Using standard URL.", error);
             }
-        };
+        });
 
         function downloadVCF() {
             const vcardData = `BEGIN:VCARD
@@ -265,25 +267,28 @@ END:VCARD`;
             URL.revokeObjectURL(url);
         }
 
-        function downloadPDF() {
+        async function downloadPDF() {
             const card = document.getElementById("visiting-card");
             const actionButtons = document.getElementById("action-buttons");
             
-            // Hide the buttons temporarily so they don't appear in the PDF
+            // 1. Hide the buttons temporarily so they don't appear in the PDF
             actionButtons.style.display = 'none';
 
-            // Configure PDF settings with CORS and Taint allowed
+            // 2. Wait a tiny fraction of a second to guarantee the browser repaints the layout without the buttons
+            await new Promise(resolve => setTimeout(resolve, 200));
+
+            // 3. Setup PDF generator with A4 size to prevent bottom cutoff
             const opt = {
                 margin:       0.5,
                 filename:     'Rishikesh_Yadav_Visiting_Card.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, allowTaint: true },
-                jsPDF:        { unit: 'in', format: 'a5', orientation: 'portrait' }
+                image:        { type: 'jpeg', quality: 1 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' } 
             };
 
-            // Generate and download
+            // 4. Generate and download
             html2pdf().set(opt).from(card).save().then(() => {
-                // Show buttons again
+                // Restore buttons
                 actionButtons.style.display = 'flex';
             }).catch(err => {
                 console.error("Error generating PDF: ", err);
