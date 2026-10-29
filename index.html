@@ -1,156 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <title> Portfolio</title>
+    <title>Rishikesh Yadav - Visiting Card</title>
+    <!-- Script to convert HTML to PNG -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --primary: #0F2027;
+            --secondary: #203A43;
+            --accent: #2C5364;
+            --text-main: #333333;
+            --text-light: #666666;
+            --bg: #F4F7F6;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--white);
+            width: 100%;
+            max-width: 400px;
+            border-radius: 16px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border-top: 8px solid var(--secondary);
+        }
+
+        .header {
+            padding: 40px 30px 20px;
+            text-align: center;
+        }
+
+        .name {
+            font-size: 26px;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .title {
+            font-size: 16px;
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .company {
+            font-size: 15px;
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .contact-list {
+            padding: 10px 30px 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .contact-item:hover {
+            color: var(--accent);
+        }
+
+        .icon-circle {
+            width: 36px;
+            height: 36px;
+            background: #f0f4f8;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .icon-circle svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--secondary);
+        }
+
+        .qr-section {
+            background: #fafafa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #eeeeee;
+        }
+
+        .qr-wrapper {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .qr-wrapper img {
+            width: 130px;
+            height: 130px;
+            display: block;
+        }
+
+        .qr-text {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .actions {
+            padding: 20px 30px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background-color: #f0f4f8;
+        }
+    </style>
 </head>
-
 <body>
-    <header class="navbar">
-        <ul>
-            <li><a href="vcard.html">Visiting Card</a></li>
-            <li><a href="https://github.com/AzeoRishi">Github</a></li>
-            <li><a href="https://docs.google.com/document/d/1ZqJjd3jKeG5rY7vSSANDbWiFFomu9IKGORpXtCv-mAM/edit#">Resume</a></li>
-            <li><a href="https://www.linkedin.com/in/azeorishi">Linkedin</a></li>
-        </ul>
-    </header>
-    <section class="container">
-        <div class="profile">
-            <div class="Image-container">
-                <img src="pic.jpg" alt="pHOTO">
-            </div>
-            <div class="info">
-                <h2>Rishikesh Yadav</h2>
-                <p>Front End Web Developer Beginner</p>
-            </div>
-            <div class="social-panel-container">
-                <a href="https://www.instagram.com/azeo.rishi/"><i class="fa fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/azeorishi"><i class="fa fa-linkedin"></i></a>
-            </div>
-        </div>
-        <div class="about">
-            <div class="para">
-                <p>I'm a 3rd year undergrad at <b>Indian Institute of Information Technology Design & Manufacturing
-                        Kancheepuram</b>. I am beginner at front end and back end web development. My area of interest is Front End web development, Data Scieence, Machine learning and Database Manaagement. My goal is to work for a well renowned IT company where i can use and
-                    upskill myself. I am trying to explore other fields of CS as well. Looking forward to learn newer tools and
-                    getting exposed to other allied areas. Keen to meet new people and form stronger connections. Do feel free to reach out if I could be of any help.
-                </p>
-                <button onclick="location.href='mailto:me20b2040@iiitdm.ac.in'">Email Me</button>
-            </div>
-        </div>
-    </section>
-    <section class="container1">
-        <div class="experience">
-            <h2>Experience</h2>
-            
-            <div class="exp1" id="1">
-                <h5>Course Knowledge on Database and Management Systems</h5>
-                <div>
-                    <p></p>
-                </div>
-            </div>
-            
-            <div class="exp1" id="2">
-                <h5>Internsship at UP Power Transmission Corp Ltd Raebariely</h5>
-                <div>
-                    <p></p>
-                </div>
-            </div>
-        </div>
-        <div class="education">
-            <h2>Education</h2>
-            <div class="ed1">
-                <div class="in">
-                    <label for="clg"><i class="fa fa-university" aria-hidden="true"></i> Institute</label>
-                    <div id="clg">IIITDM Kancheepuram</div>
-                    <div id="clg">Mary Lucas School</div>
-                </div>
-                <div class="in">
-                    <label for="str"><i class="fa fa-steam-square" aria-hidden="true"></i> Stream</label>
-                    <div id="str">Mechanical (Smart Manufacturing)</div>
-                    <div id="str">Science</div>
-                </div>
-                <div class="in">
-                    <label for="deg"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Degree</label>
-                    <div id="deg">B.tech</div>
-                    <div id="deg">Intermediate</div>
-                </div>
-                <div class="in">
-                    <label for="cgpa"><i class="fa fa-star-half-o" aria-hidden="true"></i> CGPA</label>
-                    <div id="cgpa">8.9</div>
-                    <div id="cgpa">92%</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="container1">
-      <div class="experience">
-          <h2>Projects</h2>
-          
-          <div class="exp1" id="1">
-              <h5>Website for Medical Department of IIITDM K</h5>
-              <div>
-                <br>
-                  <p1>    Website for students, staff and administration to manage medical related activities of college </p1><br>
-                  <p1>    Tools: PHPmyadmin, Apache, MySQL, HTML, CSS, PHP</p1>
-              </div>
-          </div>
-          
-          <div class="exp1" id="2">
-              <h5>Personal Portfolio Website</h5>
-              <div>
-                <p1>  Basic Website to introduce myself</p1><br>
-                <br>
-              </div>
-          </div>
-      </div>
-  </section>
-    <footer class="footer-Container">
-        <div class="footer-items">
-            <div class="skills">
-                <label for="ul">
-                    <h5 style="color: aqua;">Skills</h5>
-                </label>
-                <ul class="" id="ul">
-                    <li>Web Development</li>
-                    <li>C/C++/Python</li>
-                    <li>Data Science</li>
-                    <li>Machine learning</li>
-                    <li>Data structures & Algorithms</li>
-                </ul>
-            </div>
-            <div class="skills">
-                <label for="ul">
-                    <h5 style="color: aqua;">Tools/Softwares</h5>
-                </label>
-                <ul class="">
-                    <li>VsCode, Jupyter NB</li>
-                    <li>HTML CSS</li>
-                    <li>PhpMydmin</li>
-                    <li>Tinkercad</li>
-                    <li>Autocad, Fusion 360</li>
-                    <li>Ms-Office</li>
-                </ul>
-            </div>
-            <div class="skills">
-                <label for="ul">
-                    <h5 style="color: aqua;">Contacts</h5>
-                </label>
-                <ul class="">
-                    <li><i class="fa fa-phone"></i>+91 7080892230</li>
-                    <li><i class="fa fa-home"></i>IIITDM Kancheepuram Campus</li>
-                    <li><i class="fa fa-town"></i>Chennai</li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-    
-</body>
 
+    <div class="card" id="visiting-card">
+        <div class="header">
+            <h1 class="name">Rishikesh Yadav</h1>
+            <p class="title">Low Cost Automation</p>
+            <p class="company">Jindal Steel</p>
+        </div>
+
+        <div class="contact-list">
+            <!-- Clickable Phone -->
+            <a href="tel:+917400569787" class="contact-item">
+                <div class="icon-circle">
+                    <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+                </div>
+                +91 7400569787
+            </a>
+            
+            <!-- Clickable Email -->
+            <a href="mailto:rishikesh.yadav@jindalsteel.in" class="contact-item">
+                <div class="icon-circle">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </div>
+                rishikesh.yadav@jindalsteel.in
+            </a>
+        </div>
+
+        <div class="qr-section">
+            <div class="qr-wrapper">
+                <!-- Using absolute path and CORS attribute to ensure html2canvas can render it -->
+                <img src="https://azeorishi.github.io/images/qrcode-card.png" alt="QR Code" crossorigin="anonymous">
+            </div>
+            <p class="qr-text">Scan to view digital card</p>
+        </div>
+
+        <div class="actions" id="action-buttons">
+            <button onclick="downloadVCF()" class="btn btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+                Save Contact
+            </button>
+            
+            <button onclick="downloadPNG()" class="btn btn-outline">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--secondary)"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+                Save Visiting Card
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function downloadVCF() {
+            const vcardData = `BEGIN:VCARD
+VERSION:3.0
+N:Yadav;Rishikesh;;;
+FN:Rishikesh Yadav
+ORG:Jindal Steel
+TITLE:Low Cost Automation
+TEL;TYPE=CELL,VOICE:+917400569787
+EMAIL;TYPE=WORK:rishikesh.yadav@jindalsteel.in
+END:VCARD`;
+
+            const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Rishikesh_Yadav.vcf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        function downloadPNG() {
+            const card = document.getElementById("visiting-card");
+            const actionButtons = document.getElementById("action-buttons");
+            
+            actionButtons.style.display = 'none';
+
+            html2canvas(card, {
+                scale: 2, 
+                useCORS: true, 
+                allowTaint: true, // Added to fix missing image rendering
+                backgroundColor: "#FFFFFF"
+            }).then(canvas => {
+                actionButtons.style.display = 'flex';
+                
+                const link = document.createElement('a');
+                link.download = 'Rishikesh_Yadav_Visiting_Card.png';
+                link.href = canvas.toDataURL('image/png');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }).catch(err => {
+                console.error("Error generating image: ", err);
+                actionButtons.style.display = 'flex';
+                alert("There was an error generating the image file.");
+            });
+        }
+    </script>
+</body>
 </html>
