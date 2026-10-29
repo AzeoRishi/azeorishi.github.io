@@ -204,7 +204,8 @@
 
         <div class="qr-section">
             <div class="qr-wrapper">
-                <img id="qr-code-img" src="images/qrcode-card.png" alt="QR Code">
+                <!-- Using absolute path and anonymous CORS to prevent security blocks -->
+                <img id="qr-code-img" src="https://azeorishi.github.io/images/qrcode-card.png" alt="QR Code" crossorigin="anonymous">
             </div>
             <p class="qr-text">Scan to view digital card</p>
         </div>
@@ -223,20 +224,23 @@
     </div>
 
     <script>
-        // Pre-load the image into base64 to ensure it renders in the PDF
-        document.addEventListener("DOMContentLoaded", () => {
-            const qrImage = document.getElementById("qr-code-img");
-            fetch("images/qrcode-card.png")
-                .then(response => response.blob())
-                .then(blob => {
-                    const reader = new FileReader();
-                    reader.onloadend = function() {
-                        qrImage.src = reader.result;
-                    }
-                    reader.readAsDataURL(blob);
-                })
-                .catch(error => console.error("Error pre-loading QR code:", error));
-        });
+        // Force conversion of the image to Base64 data immediately upon loading
+        document.getElementById('qr-code-img').onload = function() {
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = this.naturalWidth || this.width;
+                canvas.height = this.naturalHeight || this.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(this, 0, 0);
+                // Replace the image source with pure data so it can't be blocked
+                const dataURL = canvas.toDataURL('image/png');
+                if (this.src !== dataURL) {
+                    this.src = dataURL;
+                }
+            } catch (e) {
+                console.error("Canvas conversion error: ", e);
+            }
+        };
 
         function downloadVCF() {
             const vcardData = `BEGIN:VCARD
@@ -265,26 +269,26 @@ END:VCARD`;
             const card = document.getElementById("visiting-card");
             const actionButtons = document.getElementById("action-buttons");
             
-            // Hide the buttons temporarily so they don't appear in the downloaded PDF
+            // Hide the buttons temporarily so they don't appear in the PDF
             actionButtons.style.display = 'none';
 
-            // Configure the PDF settings
+            // Configure PDF settings with CORS and Taint allowed
             const opt = {
                 margin:       0.5,
                 filename:     'Rishikesh_Yadav_Visiting_Card.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true },
+                html2canvas:  { scale: 2, useCORS: true, allowTaint: true },
                 jsPDF:        { unit: 'in', format: 'a5', orientation: 'portrait' }
             };
 
-            // Generate and automatically download the PDF
+            // Generate and download
             html2pdf().set(opt).from(card).save().then(() => {
-                // Show the buttons again after download finishes
+                // Show buttons again
                 actionButtons.style.display = 'flex';
             }).catch(err => {
                 console.error("Error generating PDF: ", err);
                 actionButtons.style.display = 'flex';
-                alert("There was an error generating the PDF file.");
+                alert("There was an error generating the PDF.");
             });
         }
     </script>
