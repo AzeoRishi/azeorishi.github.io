@@ -205,6 +205,7 @@
 
         <div class="qr-section">
             <div class="qr-wrapper">
+                <!-- Ensure the image path is correct in your repo -->
                 <img src="images/qrcode-card.png" alt="QR Code">
             </div>
             <p class="qr-text">Scan to view digital card</p>
@@ -227,6 +228,7 @@
 
     <script>
         function downloadVCF() {
+            // Website removed from this string completely
             const vcardData = `BEGIN:VCARD
 VERSION:3.0
 N:Yadav;Rishikesh;;;
@@ -250,23 +252,32 @@ END:VCARD`;
         }
 
         function downloadPNG() {
+            const card = document.getElementById("visiting-card");
+            const actionButtons = document.getElementById("action-buttons");
+            
             // Hide the buttons temporarily so they don't show up in the PNG
-            const actionButtons = document.getElementById('action-buttons');
             actionButtons.style.display = 'none';
 
             // Take a snapshot of the card
-            html2canvas(document.getElementById("visiting-card"), {
+            html2canvas(card, {
                 scale: 2, // Increases the resolution of the downloaded image
+                useCORS: true, // Helps load local images correctly without breaking
                 backgroundColor: "#FFFFFF"
             }).then(canvas => {
                 // Restore the buttons
                 actionButtons.style.display = 'flex';
                 
-                // Download the image
+                // Download the image as a .png
                 const link = document.createElement('a');
                 link.download = 'Rishikesh_Yadav_Visiting_Card.png';
                 link.href = canvas.toDataURL('image/png');
+                document.body.appendChild(link);
                 link.click();
+                document.body.removeChild(link);
+            }).catch(err => {
+                console.error("Error generating image: ", err);
+                actionButtons.style.display = 'flex';
+                alert("There was an error generating the image file.");
             });
         }
     </script>
