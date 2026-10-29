@@ -6,6 +6,8 @@
     <title>Rishikesh Yadav - Visiting Card</title>
     <!-- Script to convert HTML to PDF directly -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- FontAwesome for reliable PDF icon rendering -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #0F2027;
@@ -85,10 +87,6 @@
             transition: color 0.2s;
         }
 
-        .contact-item:hover {
-            color: var(--accent);
-        }
-
         .icon-circle {
             width: 36px;
             height: 36px;
@@ -99,12 +97,8 @@
             align-items: center;
             margin-right: 15px;
             flex-shrink: 0;
-        }
-
-        .icon-circle svg {
-            width: 18px;
-            height: 18px;
-            fill: var(--secondary);
+            color: var(--secondary);
+            font-size: 16px;
         }
 
         .qr-section {
@@ -162,102 +156,65 @@
             color: var(--white);
         }
 
-        .btn-primary:hover {
-            background-color: var(--primary);
-        }
-
         .btn-outline {
             background-color: transparent;
             color: var(--secondary);
             border: 2px solid var(--secondary);
         }
-
-        .btn-outline:hover {
-            background-color: #f0f4f8;
-        }
     </style>
 </head>
 <body>
 
-    <div class="card" id="visiting-card">
-        <div class="header">
-            <h1 class="name">Rishikesh Yadav</h1>
-            <p class="title">Low Cost Automation</p>
-            <p class="company">Jindal Steel</p>
-        </div>
-
-        <div class="contact-list">
-            <a href="tel:+917400569787" class="contact-item">
-                <div class="icon-circle">
-                    <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
-                </div>
-                +91 7400569787
-            </a>
-            
-            <a href="mailto:rishikesh.yadav@jindalsteel.in" class="contact-item">
-                <div class="icon-circle">
-                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                </div>
-                rishikesh.yadav@jindalsteel.in
-            </a>
-        </div>
-
-        <div class="qr-section">
-            <div class="qr-wrapper">
-                <!-- Standard relative path without strict CORS restrictions -->
-                <img id="qr-code-img" src="images/qrcode-card.png" alt="QR Code">
+    <!-- Wrapper specifically for PDF generation -->
+    <div id="pdf-wrapper" style="padding: 20px;">
+        <div class="card" id="visiting-card">
+            <div class="header">
+                <h1 class="name">Rishikesh Yadav</h1>
+                <p class="title">Low Cost Automation</p>
+                <p class="company">Jindal Steel</p>
             </div>
-            <p class="qr-text">Scan to view digital card</p>
-        </div>
 
-        <div class="actions" id="action-buttons">
-            <button onclick="downloadVCF()" class="btn btn-primary">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
-                Save Contact
-            </button>
-            
-            <button onclick="downloadPDF()" class="btn btn-outline">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--secondary)"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
-                Save Visiting Card (PDF)
-            </button>
+            <div class="contact-list">
+                <a href="tel:+917400569787" class="contact-item">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    +91 7400569787
+                </a>
+                
+                <a href="mailto:rishikesh.yadav@jindalsteel.in" class="contact-item">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    rishikesh.yadav@jindalsteel.in
+                </a>
+            </div>
+
+            <div class="qr-section">
+                <div class="qr-wrapper">
+                    <!-- Absolute URL to prevent path errors -->
+                    <img id="qr-code-img" src="https://azeorishi.github.io/images/qrcode-card.png" alt="QR Code" crossorigin="anonymous">
+                </div>
+                <p class="qr-text">Scan to view digital card</p>
+            </div>
+
+            <div class="actions" id="action-buttons">
+                <button onclick="downloadVCF()" class="btn btn-primary">
+                    <i class="fa-solid fa-address-book"></i> Save Contact
+                </button>
+                
+                <button onclick="downloadPDF()" class="btn btn-outline" id="pdf-btn">
+                    <i class="fa-solid fa-file-pdf"></i> Save Visiting Card (PDF)
+                </button>
+            </div>
         </div>
     </div>
 
     <script>
-        // Highly reliable method: Convert image to pure data so the PDF generator CANNOT miss it.
-        document.addEventListener("DOMContentLoaded", async () => {
-            const qrImg = document.getElementById("qr-code-img");
-            try {
-                // Fetch the image file in the background
-                const response = await fetch('images/qrcode-card.png');
-                const blob = await response.blob();
-                
-                // Read it into Base64 format
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    // Replace the standard URL with the pure data payload
-                    qrImg.src = reader.result;
-                };
-                reader.readAsDataURL(blob);
-            } catch (error) {
-                console.error("Image optimization failed. Using standard URL.", error);
-            }
-        });
-
         function downloadVCF() {
-            const vcardData = `BEGIN:VCARD
-VERSION:3.0
-N:Yadav;Rishikesh;;;
-FN:Rishikesh Yadav
-ORG:Jindal Steel
-TITLE:Low Cost Automation
-TEL;TYPE=CELL,VOICE:+917400569787
-EMAIL;TYPE=WORK:rishikesh.yadav@jindalsteel.in
-END:VCARD`;
-
+            const vcardData = `BEGIN:VCARD\nVERSION:3.0\nN:Yadav;Rishikesh;;;\nFN:Rishikesh Yadav\nORG:Jindal Steel\nTITLE:Low Cost Automation\nTEL;TYPE=CELL,VOICE:+917400569787\nEMAIL;TYPE=WORK:rishikesh.yadav@jindalsteel.in\nEND:VCARD`;
             const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
             const url = URL.createObjectURL(blob);
-            
             const link = document.createElement('a');
             link.href = url;
             link.download = 'Rishikesh_Yadav.vcf';
@@ -268,32 +225,50 @@ END:VCARD`;
         }
 
         async function downloadPDF() {
-            const card = document.getElementById("visiting-card");
+            const wrapper = document.getElementById("pdf-wrapper");
             const actionButtons = document.getElementById("action-buttons");
+            const qrImg = document.getElementById("qr-code-img");
+            const pdfBtn = document.getElementById("pdf-btn");
+
+            // Change button text to show loading state
+            pdfBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating PDF...';
             
-            // 1. Hide the buttons temporarily so they don't appear in the PDF
+            try {
+                // Convert the image to base64 data to bypass browser PDF security blocks
+                if (!qrImg.src.startsWith('data:')) {
+                    const response = await fetch(qrImg.src);
+                    const blob = await response.blob();
+                    const dataUrl = await new Promise(resolve => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result);
+                        reader.readAsDataURL(blob);
+                    });
+                    qrImg.src = dataUrl;
+                }
+            } catch (e) {
+                console.error("Image conversion failed, PDF may not render QR code:", e);
+            }
+
+            // Hide buttons from the final PDF
             actionButtons.style.display = 'none';
 
-            // 2. Wait a tiny fraction of a second to guarantee the browser repaints the layout without the buttons
-            await new Promise(resolve => setTimeout(resolve, 200));
-
-            // 3. Setup PDF generator with A4 size to prevent bottom cutoff
+            // Generate PDF
             const opt = {
-                margin:       0.5,
+                margin:       0,
                 filename:     'Rishikesh_Yadav_Visiting_Card.pdf',
                 image:        { type: 'jpeg', quality: 1 },
                 html2canvas:  { scale: 2, useCORS: true },
-                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' } 
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
             };
 
-            // 4. Generate and download
-            html2pdf().set(opt).from(card).save().then(() => {
+            html2pdf().set(opt).from(wrapper).save().then(() => {
                 // Restore buttons
                 actionButtons.style.display = 'flex';
+                pdfBtn.innerHTML = '<i class="fa-solid fa-file-pdf"></i> Save Visiting Card (PDF)';
             }).catch(err => {
-                console.error("Error generating PDF: ", err);
                 actionButtons.style.display = 'flex';
-                alert("There was an error generating the PDF.");
+                pdfBtn.innerHTML = '<i class="fa-solid fa-file-pdf"></i> Save Visiting Card (PDF)';
+                alert("Error generating PDF.");
             });
         }
     </script>
